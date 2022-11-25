@@ -4,5 +4,5 @@ Tutorial link: https://youtube.com/playlist?list=PLCCdMELNzOfjn104WCn_CoRXaBqK7X
 
 Platform: Android
 
-Aspect Ratio: 16:9
+Display Aspect Ratio: 16:9 Portrait
 
