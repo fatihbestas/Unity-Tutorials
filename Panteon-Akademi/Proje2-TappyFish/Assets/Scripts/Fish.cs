@@ -9,10 +9,17 @@ public class Fish : MonoBehaviour
     int angle;
     int maxAngle = 20;
     int minAngle = -60;
-    public Score score;
+    [SerializeField] Score score;
+    bool touchedGround;
+    [SerializeField] GameManager gameManager;
+    [SerializeField] Sprite fishDied;
+    SpriteRenderer sp;
+    Animator animator;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sp = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         
     }
 
@@ -28,7 +35,7 @@ public class Fish : MonoBehaviour
 
     void FishSwim()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && GameManager.gameOver == false)
         {
             // rb.velocity = Vector2.zero; // bu satırın bir işlevi yok bence.
             rb.velocity = new Vector2(rb.velocity.x, speed);
@@ -52,7 +59,10 @@ public class Fish : MonoBehaviour
             }
         }
 
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        if(touchedGround == false)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -61,5 +71,27 @@ public class Fish : MonoBehaviour
         {
             score.Scored();
         }
+        else if(other.CompareTag("Column"))
+        {
+            gameManager.GameOver();
+            RotateDown();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Ground"))
+        {
+            gameManager.GameOver();
+            RotateDown();
+        }    
+    }
+
+    void RotateDown()
+    {
+        touchedGround = true;
+        transform.rotation = Quaternion.Euler(0, 0, -90);
+        sp.sprite = fishDied;
+        animator.enabled = false;
     }
 }
