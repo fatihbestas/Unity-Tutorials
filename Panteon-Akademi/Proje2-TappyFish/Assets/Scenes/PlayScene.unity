@@ -1263,6 +1263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97293c099619f040aea309f461fdeb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelScore: {fileID: 2053033458}
+  panelHighScore: {fileID: 8740746}
 --- !u!1 &1467722330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,7 +1532,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.8
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1548,7 +1550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6207ae3cf4458a04a9501b110d9a4bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
+  speed: 15
   score: {fileID: 1346710662}
   gameManager: {fileID: 530257153}
   fishDied: {fileID: -302627285, guid: 82880d297f1e9314f9a207d7156ea26d, type: 3}
