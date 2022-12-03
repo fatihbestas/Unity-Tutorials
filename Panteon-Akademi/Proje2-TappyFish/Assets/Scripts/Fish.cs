@@ -18,6 +18,10 @@ public class Fish : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // oyuncudan ilk input gelene kadar balığın düşmemesi için:
+        rb.gravityScale = 0;
+
         sp = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         
@@ -37,8 +41,17 @@ public class Fish : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && GameManager.gameOver == false)
         {
-            // rb.velocity = Vector2.zero; // bu satırın bir işlevi yok bence.
-            rb.velocity = new Vector2(rb.velocity.x, speed);
+            if (GameManager.gameStarted == false)
+            {
+                rb.gravityScale = 4f;
+                rb.velocity = new Vector2(rb.velocity.x, speed);
+                gameManager.GameHasStarted();
+            }
+            else
+            {
+                // rb.velocity = Vector2.zero; // bu satırın bir işlevi yok bence.
+                rb.velocity = new Vector2(rb.velocity.x, speed);
+            }
         }
     }
 

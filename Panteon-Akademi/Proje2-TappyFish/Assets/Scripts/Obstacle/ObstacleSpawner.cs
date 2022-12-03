@@ -14,12 +14,13 @@ public class ObstacleSpawner : MonoBehaviour
     void Start()
     {
         maxTime = 2f;
-        timer = 0;
+        // başlangıçta beklemeden hemen 1 engel üretmesi için:
+        timer = 2f; 
     }
 
     void Update()
     {
-        if(GameManager.gameOver == false)
+        if(GameManager.gameOver == false && GameManager.gameStarted == true)
         {
             timer += Time.deltaTime;
             if(timer >= maxTime)

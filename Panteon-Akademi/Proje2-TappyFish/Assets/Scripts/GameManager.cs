@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static bool gameOver;
     public GameObject gameOverPanel;
+    public GameObject getReady;
+    public static int gameScore;
+    public GameObject score;
+
+    public static bool gameStarted;
 
     public void RestartBtn()
     {
@@ -15,12 +20,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameOver = false;
+        gameStarted = false;
+        getReady.SetActive(true);
+    }
+
+    public void GameHasStarted()
+    {
+        gameStarted = true;
+        getReady.SetActive(false);
     }
 
     public void GameOver()
     {
         gameOver = true;
         gameOverPanel.SetActive(true);
+        score.SetActive(false);
+        gameScore = score.GetComponent<Score>().GetScore();
     }
 
     void Update()
