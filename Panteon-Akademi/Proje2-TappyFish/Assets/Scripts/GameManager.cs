@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    [SerializeField] AudioSource hitSound;
     void Start()
     {
         gameOver = false;
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        hitSound.Play();
+        
         gameOver = true;
         gameOverPanel.SetActive(true);
         score.SetActive(false);

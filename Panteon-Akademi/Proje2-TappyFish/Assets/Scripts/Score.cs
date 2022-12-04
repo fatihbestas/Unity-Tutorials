@@ -12,7 +12,7 @@ public class Score : MonoBehaviour
     public Text panelScore;
     public Text panelHighScore;
     public GameObject New;
-
+    [SerializeField] AudioSource pointSound;
     void Start()
     {
         score = 0;
@@ -25,6 +25,8 @@ public class Score : MonoBehaviour
 
     public void Scored()
     {
+        pointSound.Play();
+        
         score++;
         scoreText.text = score.ToString();
         panelScore.text = score.ToString();
